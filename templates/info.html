@@ -1,0 +1,28 @@
+{% load absurl %}
+<html>
+<head>
+<title>Information</title>
+</head>
+<body>
+<h2>{{ url.uri }}</h2>
+<p>Created on: {{ url.created_on }}</p>
+<div>Link to share:
+<form action="#">
+    <input type="text" size="50" value="{% absurl url_go url_id=url.id %}"></input>
+</form>
+</div>
+<h3>Access history:</h3>
+{% if access_history %}
+{% for access in access_history %}
+<div>
+    <strong>{{ access.created_on }}</strong><br>
+    {% for access_data in access.get_access_data %}
+    {{ access_data.key }}: {{ access_data.value }}<br>
+    {% endfor %}
+    <hr>
+</div>
+{% endfor %}
+{% else %}
+Not accessed.
+{% endif %}
+</body>
