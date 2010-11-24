@@ -2,6 +2,7 @@ from django.db import models
 
 class Url(models.Model):
     uri = models.URLField()
+    notes = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
